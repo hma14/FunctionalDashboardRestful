@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace FunctionalDashboardRestful.Models
 {
     public partial class TL_EventLog
     {
-        [Key]
         public long ID { get; set; }
         public long SourceLogID { get; set; }
         public string LogName { get; set; }

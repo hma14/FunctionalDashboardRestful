@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace FunctionalDashboardRestful.Models
 {
     public partial class CPGFD_ErrorMsg
     {
-        [Key]
         public int ID { get; set; }
         public Nullable<int> ErrorListID { get; set; }
         public string Message { get; set; }

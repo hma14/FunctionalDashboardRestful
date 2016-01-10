@@ -1,6 +1,6 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-//using FunctionalDashboardRestful.Models.Mapping;
+using FunctionalDashboardRestful.Models.Mapping;
 
 namespace FunctionalDashboardRestful.Models
 {
@@ -16,6 +16,7 @@ namespace FunctionalDashboardRestful.Models
         {
         }
 
+        public DbSet<CategoryIDList> CategoryIDLists { get; set; }
         public DbSet<CPGFD_ErrorExceptions> CPGFD_ErrorExceptions { get; set; }
         public DbSet<CPGFD_ErrorList> CPGFD_ErrorList { get; set; }
         public DbSet<CPGFD_ErrorMsg> CPGFD_ErrorMsg { get; set; }
@@ -32,19 +33,20 @@ namespace FunctionalDashboardRestful.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Configurations.Add(new CPGFD_ErrorExceptionsMap());
-            //modelBuilder.Configurations.Add(new CPGFD_ErrorListMap());
-            //modelBuilder.Configurations.Add(new CPGFD_ErrorMsgMap());
-            //modelBuilder.Configurations.Add(new CPGFD_KBMap());
-            //modelBuilder.Configurations.Add(new CPGFD_RolesMap());
-            //modelBuilder.Configurations.Add(new CPGFD_SLTRulesMap());
-            //modelBuilder.Configurations.Add(new CPGFD_SLTTrackingMap());
-            //modelBuilder.Configurations.Add(new CPGFD_UsersMap());
-            //modelBuilder.Configurations.Add(new CPGFD_UsersInRolesMap());
-            //modelBuilder.Configurations.Add(new EventIDListMap());
-            //modelBuilder.Configurations.Add(new NCSInfoMap());
-            //modelBuilder.Configurations.Add(new SLTTrackingHistoryMap());
-            //modelBuilder.Configurations.Add(new TL_EventLogMap());
+            modelBuilder.Configurations.Add(new CategoryIDListMap());
+            modelBuilder.Configurations.Add(new CPGFD_ErrorExceptionsMap());
+            modelBuilder.Configurations.Add(new CPGFD_ErrorListMap());
+            modelBuilder.Configurations.Add(new CPGFD_ErrorMsgMap());
+            modelBuilder.Configurations.Add(new CPGFD_KBMap());
+            modelBuilder.Configurations.Add(new CPGFD_RolesMap());
+            modelBuilder.Configurations.Add(new CPGFD_SLTRulesMap());
+            modelBuilder.Configurations.Add(new CPGFD_SLTTrackingMap());
+            modelBuilder.Configurations.Add(new CPGFD_UsersMap());
+            modelBuilder.Configurations.Add(new CPGFD_UsersInRolesMap());
+            modelBuilder.Configurations.Add(new EventIDListMap());
+            modelBuilder.Configurations.Add(new NCSInfoMap());
+            modelBuilder.Configurations.Add(new SLTTrackingHistoryMap());
+            modelBuilder.Configurations.Add(new TL_EventLogMap());
         }
     }
 }

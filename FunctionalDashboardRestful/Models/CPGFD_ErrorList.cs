@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace FunctionalDashboardRestful.Models
 {
@@ -11,7 +10,6 @@ namespace FunctionalDashboardRestful.Models
             this.CPGFD_ErrorMsg = new List<CPGFD_ErrorMsg>();
         }
 
-        [Key]
         public int ID { get; set; }
         public string ProgramID { get; set; }
         public string InstitutionID { get; set; }

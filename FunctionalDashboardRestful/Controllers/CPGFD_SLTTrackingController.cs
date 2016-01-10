@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using FunctionalDashboardRestful.Models;
+using FunctionalDashboardRestful.DTO;
 
 namespace FunctionalDashboardRestful.Controllers
 {
@@ -18,9 +19,27 @@ namespace FunctionalDashboardRestful.Controllers
         private UPASSDASHDEVContext db = new UPASSDASHDEVContext();
 
         // GET: api/CPGFD_SLTTracking
-        public IQueryable<CPGFD_SLTTracking> GetCPGFD_SLTTracking()
+        [CacheClient(Duration = 120)]
+        public IQueryable<SLTTrackingDto> GetCPGFD_SLTTracking()
         {
-            return db.CPGFD_SLTTracking;
+            var result = from s in db.CPGFD_SLTTracking
+                         where s.Status == 2 || s.Status == 3
+                         select new SLTTrackingDto
+                         {
+                             ProgramID = s.ProgramID,
+                             InstitutionID = s.InstitutionID,
+                             Institution = (from n in db.NCSInfoes where n.InstitutionId == s.InstitutionID select n.Name).FirstOrDefault(),
+                             CategoryID = s.CategoryID,
+                             Category = (from c in db.CategoryIDLists where c.CategoryID == s.CategoryID select c.CategoryName).FirstOrDefault(),
+                             EventID = s.EventID,
+                             Event = (from e in db.EventIDLists where e.EventID == s.EventID select e.EventName).FirstOrDefault(),
+                             RuleDescription = s.RuleDescription,
+                             SLTWarningDatetime = s.SLTWarningDatetime,
+                             SLTBreachDatetime  = s.SLTBreachDatetime,
+                             Status = s.Status
+                         };
+
+            return result;
         }
 
         // GET: api/CPGFD_SLTTracking/5

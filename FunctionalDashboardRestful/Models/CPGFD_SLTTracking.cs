@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace FunctionalDashboardRestful.Models
 {
     public partial class CPGFD_SLTTracking
     {
-        [Key]
         public long ID { get; set; }
         public int EventID { get; set; }
         public int CategoryID { get; set; }
