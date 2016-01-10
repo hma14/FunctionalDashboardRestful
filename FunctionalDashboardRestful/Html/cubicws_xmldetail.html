@@ -1,0 +1,75 @@
+﻿<div class="container-fluid" ng-app="functionalDashboardApp" ng-controller="cubicwsController">
+    
+    <div class="col-lg-12">
+        <h5 class="title panel-title">Cubic Web Services Xml Data</h5>
+        <table class="table table-striped table-responsive">
+            <caption ng-show="xmldata.GUID.length > 0" class="caption">XML Data on GUID = "{{xmldata.GUID}}"</caption>
+
+            <tr ng-show="xmldata.TaskID != null">
+                <td class="itemName text-info col-lg-4">Task ID</td>
+                <td>{{xmldata.TaskID}}</td>
+            </tr>
+            <tr ng-show="xmldata.StateID != null">
+                <td class="itemName text-info">State ID</td>
+                <td>{{xmldata.StateID}}</td>
+            </tr>
+            <tr>
+                <td class="itemName text-info">Program</td>
+                <td>{{xmldata.ProgramID}}</td>
+            </tr>
+            <tr ng-show="xmldata.InstitutionID.length > 0">
+                <td class="itemName text-info">Institution ID</td>
+                <td>{{xmldata.InstitutionID}}</td>
+            </tr>
+            <tr ng-show="xmldata.Category != null">
+                <td class="itemName text-info">Category</td>
+                <td>{{xmldata.Category}}</td>
+            </tr>
+            <tr ng-show="xmldata.EventID != null">
+                <td class="itemName text-info">Event (ID)</td>
+                <td>{{xmldata.Event}} (<span class="ids">{{xmldata.EventID}}</span>)</td>
+            </tr>
+            <tr ng-show="xmldata.GUID.length > 0">
+                <td class="itemName text-info">GUID</td>
+                <td>{{xmldata.GUID}}</td>
+            </tr>
+            <tr ng-show="xmldata.CardSerialNumber.length > 0">
+                <td class="itemName text-info">Card Serial Number</td>
+                <td>{{xmldata.CardSerialNumber}}</td>
+            </tr>
+            <tr ng-show="xmldata.Uri != null">
+                <td class="itemName text-info">URI</td>
+                <td>{{xmldata.Uri}}</td>
+            </tr>
+            <tr>
+                <td class="itemName text-info">Process Datetime</td>
+                <td>{{xmldata.ProcessDatetime}}</td>
+            </tr>
+            <tr ng-show="xmldata.Level != null">
+                <td class="itemName text-info">Log Level</td>
+                <td>{{xmldata.Level}}</td>
+            </tr>
+            <tr ng-show="xmldata.ProcessErrorID == 996">
+                <td class="itemName text-info">Info ID</td>
+                <td>{{xmldata.ProcessErrorID}}</td>
+            </tr>
+            <tr ng-show="xmldata.ProcessErrorID > 0 && xmldata.ProcessErrorID != 996">
+                <td class="alert alert-danger">Error ID</td>
+                <td class="errors">{{xmldata.ProcessErrorID}}</td>
+            </tr>
+
+            <tr ng-show="xmldata.ProcessErrorID == 996">
+                <td class="itemName text-info">Info Description</td>
+                <td class="text-info">{{xmldata.ProcessErrorDescr}}</td>
+            </tr>
+            <tr ng-show="xmldata.ProcessErrorID > 0 && xmldata.ProcessErrorID != 996">
+                <td class="alert alert-danger">Error/Info Description</td>
+                <td class="errors">{{xmldata.ProcessErrorDescr}}</td>
+            </tr>
+            <tr ng-show="xmldata.ProcessErrorID > 0 && xmldata.StackTrace != null">
+                <td class="alert alert-danger">StackTrace</td>
+                <td class="errors">{{xmldata.StackTrace}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

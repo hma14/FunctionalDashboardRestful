@@ -1,0 +1,93 @@
+﻿<div class="container-fluid" ng-app="functionalDashboardApp" ng-controller="filesController">
+    <div class="col-lg-10">
+        <h5 class="title panel-title">Xml Data</h5>
+        <table class="table table-striped table-responsive">
+            <caption class="caption">Xml Data on RequestTxID = '{{xmlData.RequestTxID}}'</caption>
+            <tr>
+                <td class="itemName text-info col-lg-4">Program ID</td>
+                <td>{{xmlData.ProgramID}}</td>
+            </tr>
+            <tr ng-show="xmlData.Event != null">
+                <td class="itemName text-info">Event</td>
+                <td>{{xmlData.Event}}</td>
+            </tr>
+            <tr ng-show="xmlData.Category != null">
+                <td class="itemName text-info">Category</td>
+                <td>{{xmlData.Category}}</td>
+            </tr>
+           
+            <tr ng-show="xmlData.FileStatus != null">
+                <td class="itemName text-info">File Status</td>
+                <td>{{xmlData.FileStatus}}</td>
+            </tr>
+            <tr>
+                <td class="itemName text-info">Institution ID</td>
+                <td>{{xmlData.InstitutionID}}</td>
+            </tr>
+            <tr ng-show="xmlData.GUID != null">
+                <td class="itemName text-info">GUID</td>
+                <td>{{xmlData.GUID}}</td>
+            </tr>
+            <tr ng-show="xmlData.TaskID != null">
+                <td class="itemName text-info">Task ID</td>
+                <td>{{xmlData.TaskID}}</td>
+            </tr>
+            <tr ng-show="xmlData.TaskID != null">
+                <td class="itemName text-info">State ID</td>
+                <td>{{xmlData.StateID}}</td>
+            </tr>
+            <tr ng-show="xmlData.CardSerialNumber != null">
+                <td class="itemName text-info">CardSerialNumber</td>
+                <td>{{xmlData.CardSerialNumber}}</td>
+            </tr>
+            <tr ng-show="xmlData.RequestTxID != null">
+                <td class="itemName text-info">RequestTxID</td>
+                <td>{{xmlData.RequestTxID}}</td>
+            </tr>
+            <tr ng-show="xmlData.UniqueParticipantId != null">
+                <td class="itemName text-info">UniqueParticipant ID</td>
+                <td>{{xmlData.UniqueParticipantId}}</td>
+            </tr>
+            <tr ng-show="xmlData.Action != null">
+                <td class="itemName text-info">Action</td>
+                <td>{{xmlData.Action}}</td>
+            </tr>
+            <tr ng-show="xmlData.ReasonCode != null">
+                <td class="itemName text-info">ReasonCode</td>
+                <td>{{xmlData.ReasonCode}}</td>
+            </tr>
+            <tr ng-show="xmlData.Benefit.length > 0">
+                <td class="itemName text-info">Benefit</td>
+                <td>{{xmlData.Benefit}}</td>
+            </tr>
+            <tr ng-show="xmlData.URI != null">
+                <td class="itemName text-info col-lg-4">Uri</td>
+                <td>{{xmlData.URI}}</td>
+            </tr>
+            <tr ng-show="xmlData.URIType != null">
+                <td class="itemName text-info">Uri Type</td>
+                <td>{{xmlData.URIType}}</td>
+            </tr>
+            <tr ng-show="xmlData.Level != null">
+                <td class="itemName text-info">Log Level</td>
+                <td>{{xmlData.Level}}</td>
+            </tr>
+            <tr>
+                <td class="itemName text-info col-lg-4">ProcessDatetime</td>
+                <td>{{xmlData.ProcessDatetime}}</td>
+            </tr>
+            <tr ng-show="xmlData.ProcessErrorID.length > 0">
+                <td class="alert alert-danger">ProcessErrorID</td>
+                <td class="errors">{{xmlData.ProcessErrorID}}</td>
+            </tr>
+            <tr ng-show="xmlData.ProcessErrorDescr.length > 0">
+                <td class="alert alert-danger">ProcessErrorDescr</td>
+                <td class="errors">{{xmlData.ProcessErrorDescr}}</td>
+            </tr>
+            <tr ng-show="xmlData.StackTrace.length > 0">
+                <td class="alert alert-danger">StackTrace</td>
+                <td class="errors">{{xmlData.StackTrace}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

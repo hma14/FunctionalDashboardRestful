@@ -1,0 +1,220 @@
+﻿<div class="container-fluid" ng-app="functionalDashboardApp" ng-controller="cubicwsController" ng-init="init()">
+
+    <script type="text/javascript">
+        $(".date-picker").datepicker();
+        $(".date-picker").on("change", function () {
+            var id = $(this).attr("id");
+            var val = $("label[for='" + id + "']").text();
+            $("#msg").text(val + " changed");
+        });
+    </script>
+
+
+
+
+    <div class="col-sm-10">
+        <table class="table table-striped table-responsive">
+            <caption class="caption">PPASS</caption>
+            <thead>
+                <tr>
+                    <th>
+                        <a href="" ng-click="sortField='OrganizationId';reverse=!reverse">NCS Customer ID</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='Program';reverse=!reverse">Program</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='Institution';reverse=!reverse">Institution (ID)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='TotalErrors';reverse=!reverse">Errors</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='NewCards';reverse=!reverse">New Cards (<span class="ids">24</span>)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='TerminateCards';reverse=!reverse">Terminate Cards (<span class="ids">28</span>)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='ReplacementCards';reverse=!reverse">Replacement Cards (<span class="ids">25</span>)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='SuspendCards';reverse=!reverse">Suspend Cards (<span class="ids">27</span>)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='ResumeCards';reverse=!reverse">Resume Cards (<span class="ids">26</span>)</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="ev in cubicws_ppass | orderBy:sortField:reverse">
+                    <td>{{ev.OrganizationId}}</td>
+                    <td>{{ev.Program}}</td>
+                    <td ng-show="ev.Institution != null">{{ev.Institution}} (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-show="ev.Institution == null"></td>
+                    <td ng-show="ev.TotalErrors > 0" class="errors">{{ev.TotalErrors}}</td>
+                    <td ng-show="ev.TotalErrors == 0" class="infos">{{ev.TotalErrors}}</td>
+                    <td>{{ev.NewCards}}</td>
+                    <td>{{ev.TerminateCards}}</td>
+                    <td>{{ev.ReplacementCards}}</td>
+                    <td>{{ev.SuspendCards}}</td>
+                    <td>{{ev.ResumeCards}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-sm-2">
+
+        <div class="date-form">
+            <div class="control-group">
+                <label for="startDate" class="control-label">Start Date</label>
+                <div class="controls">
+                    <div class="input-group">
+                        <label for="startDate" class="input-group-addon btn">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </label>
+                        <input id="startDate" type="text" class="date-picker form-control" ng-model="startDate" />
+                    </div>
+                </div>
+
+                <label for="endDate" class="control-label">End Date</label>
+                <div class="controls">
+                    <div class="input-group">
+                        <label for="endDate" class="input-group-addon btn">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </label>
+                        <input id="endDate" type="text" class="date-picker form-control" ng-model="endDate" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="date-form">
+            <a class="btn btn-primary btn-sm" href="" ng-click="queryOnDateRange()">Query on date range</a>
+        </div>
+    </div>
+
+
+    <div class="col-sm-12">
+        <table class="table table-striped table-responsive">
+            <caption class="caption">UPASS</caption>
+            <thead>
+                <tr>
+                    <th>
+                        <a href="" ng-click="sortField2='OrganizationId';reverse2=!reverse2">NCS Customer ID</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='Program';reverse2=!reverse2">Program</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='Institution';reverse2=!reverse2">Institution (ID)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='TotalErrors';reverse2=!reverse2">Errors</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='WaiveBenefits';reverse2=!reverse2">Waive Benefit (<span class="ids">32</span>)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='ElectBenefits';reverse2=!reverse2">Elect Benefits (<span class="ids">31</span>)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='LinkCards';reverse2=!reverse2">Link Cards (<span class="ids">29</span>)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='UnlinkCards';reverse2=!reverse2">Unlink Cards (<span class="ids">30</span>)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='UpassWebServices';reverse2=!reverse2">Web Services (<span class="ids">50</span>)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='Others';reverse2=!reverse2">Others</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--<tr ng-repeat="ev in cubicws_upass | orderBy:sortField2:reverse2">-->
+                <tr dir-paginate="ev in cubicws_upass | itemsPerPage: 5 | orderBy:sortField2:reverse2" pagination-id="cubicwsupass">
+                    <td>{{ev.OrganizationId}}</td>
+                    <td>{{ev.Program}}</td>
+                    <td ng-show="ev.Institution != null">{{ev.Institution}} (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-show="ev.Institution == null"></td>
+                    <td ng-show="ev.TotalErrors > 0" class="errors">{{ev.TotalErrors}}</td>
+                    <td ng-show="ev.TotalErrors == 0" class="infos">{{ev.TotalErrors}}</td>
+                    <td>{{ev.WaiveBenefits}}</td>
+                    <td>{{ev.ElectBenefits}}</td>
+                    <td>{{ev.LinkCards}}</td>
+                    <td>{{ev.UnlinkCards}}</td>
+                    <td>{{ev.UpassWebServices}}</td>
+                    <td>{{ev.Others}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <div class="text-center">
+                <dir-pagination-controls pagination-id="cubicwsupass" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="Html/dirPagination.tpl.html"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <table class="table table-striped table-responsive">
+            <caption class="caption">Current Web Service Stream</caption>
+            <thead>
+                <tr>
+                    <th>
+                        <a href="" ng-click="sortField3='OrganizationId';reverse3=!reverse3">NCS Customer ID</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='Program';reverse3=!reverse3">Program</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='Institution';reverse3=!reverse3">Institution (ID)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='TotalErrors';reverse3=!reverse3">Category (ID)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='Event';reverse3=!reverse3">Event (ID)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='GUID';reverse3=!reverse3">GUID</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='TotalErrors';reverse3=!reverse3">Status</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--<tr ng-repeat="ev in cubicws_stream | orderBy:sortField3:reverse3">-->
+                <tr dir-paginate="ev in cubicws_stream | itemsPerPage: 5 | orderBy:sortField3:reverse3" pagination-id="cubicwsstream">
+                    <td>{{ev.OrganizationId}}</td>
+                    <td>{{ev.Program}}</td>
+                    <td ng-show="ev.Institution != null">{{ev.Institution}} (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-show="ev.Institution == null"></td>
+                    <td>{{ev.Category}} (<span class="ids">{{ev.CategoryID}}</span>)</td>
+                    <td>
+                        {{ev.Event}} (<span class="ids">{{ev.EventID}}</span>)<a href="" class="plusSign" ng-click="toggle = !toggle" ng-show="!toggle"> [+]</a><a href="" class="plusSign" ng-click="toggle = !toggle" ng-show="toggle"> [-]</a>
+                        <ul ng-show="toggle" ng-repeat="e in ev.Events">
+                            <li>
+                                <a ng-show="e.Level == 'Error'" class="errorLink" href="#/xmldetail" ng-click="getEvent(ev.ID)">{{e.Event}}</a>
+                                <a ng-show="e.Level == 'Information' && e.Event" href="#/xmldetail" ng-click="getEvent(ev.ID)">{{e.Event}}</a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td><a href="#/userdetail" ng-click="getUserDetail(ev.InstitutionID, ev.GUID)">{{ev.GUID}}</a></td>
+                    <td ng-show="ev.TotalErrors > 0" class="errors">{{ev.TotalErrors}}</td>
+                    <td ng-show="ev.TotalErrors == 0" class="infos">{{ev.TotalErrors}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <div class="text-center">
+                <dir-pagination-controls pagination-id="cubicwsstream" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="Html/dirPagination.tpl.html"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <script src="../Scripts/app/pagination/dirPagination.js"></script>
+</div>

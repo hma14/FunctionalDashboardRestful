@@ -1,0 +1,200 @@
+﻿<div class="container-fluid" ng-app="functionalDashboardApp" ng-controller="filesController" ng-init="init()">
+
+    <script type="text/javascript">
+        $(".date-picker").datepicker();
+        $(".date-picker").on("change", function () {
+            var id = $(this).attr("id");
+            var val = $("label[for='" + id + "']").text();
+            $("#msg").text(val + " changed");
+        });
+    </script>
+
+
+    <div class="col-sm-10">
+        <table class="table table-striped table-responsive">
+            <caption class="caption">PPASS</caption>
+            <thead>
+                <tr>
+                    <th>
+                        <a href="" ng-click="sortField='OrganizationId';reverse=!reverse">NCS Customer ID</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='Program';reverse=!reverse">Program</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='Institution';reverse=!reverse">Institution (ID)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='TotalErrors';reverse=!reverse">Errors</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='IufRequests';reverse=!reverse">IUF Requests</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='FufRequests';reverse=!reverse">FUF Requests</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='FcfRequests';reverse=!reverse">FCF Requests</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField='IcfRequests';reverse=!reverse">ICF Requests</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-show="ev.Program == 'PPASS'" ng-repeat="ev in file_ppass | orderBy:sortField:reverse">
+                    <td>{{ev.OrganizationId}}</td>
+                    <td>{{ev.Program}}</td>
+                    <td ng-show="ev.Institution != null">{{ev.Institution}} (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-show="ev.Institution == null"></td>
+                    <td ng-show="ev.TotalErrors > 0" class="errors">{{ev.TotalErrors}}</td>
+                    <td ng-show="ev.TotalErrors == 0" class="infos">{{ev.FileErrors}}</td>
+                    <td ng-show="ev.IufRequests > 0" class="errors">{{ev.IufRequests}}</td>
+                    <td ng-show="ev.IufRequests == 0" class="infos">{{ev.IufRequests}}</td>
+                    <td ng-show="ev.FufRequests > 0" class="errors">{{ev.FufRequests}}</td>
+                    <td ng-show="ev.FufRequests == 0" class="infos">{{ev.FufRequests}}</td>
+                    <td ng-show="ev.FcfRequests > 0" class="errors">{{ev.FcfRequests}}</td>
+                    <td ng-show="ev.FcfRequests == 0" class="infos">{{ev.FcfRequests}}</td>
+                    <td ng-show="ev.IcfRequests > 0" class="errors">{{ev.IcfRequests}}</td>
+                    <td ng-show="ev.IcfRequests == 0" class="infos">{{ev.IcfRequests}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-sm-2">
+
+        <div class="date-form">
+            <div class="control-group">
+                <label for="startDate" class="control-label">Start Date</label>
+                <div class="controls">
+                    <div class="input-group">
+                        <label for="startDate" class="input-group-addon btn">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </label>
+                        <input id="startDate" type="text" class="date-picker form-control" ng-model="startDate" />
+                    </div>
+                </div>
+
+                <label for="endDate" class="control-label">End Date</label>
+                <div class="controls">
+                    <div class="input-group">
+                        <label for="endDate" class="input-group-addon btn">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </label>
+                        <input id="endDate" type="text" class="date-picker form-control" ng-model="endDate" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="date-form">
+            <a class="btn btn-primary btn-sm" href="" ng-click="init()">Query on date range</a>
+        </div>
+    </div>
+
+
+
+    <div class="col-sm-12">
+        <table class="table table-striped table-responsive">
+            <caption class="caption">UPASS</caption>
+            <thead>
+                <tr>
+                    <th>
+                        <a href="" ng-click="sortField2='DateStart';reverse2=!reverse2">Datetime Started</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='Program';reverse2=!reverse2">Program</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='Institution';reverse2=!reverse2">Institution (ID)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='Category';reverse2=!reverse2">Category</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='Requests';reverse2=!reverse2">Requests</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField2='TotalErrors';reverse2=!reverse2">Errors</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--<tr ng-show="ev.Program == 'UPASS'" ng-repeat="ev in file_upass | orderBy:sortField2:reverse2">-->
+                <tr ng-show="ev.Program == 'UPASS'" dir-paginate="ev in file_upass | itemsPerPage: 5 | orderBy:sortField2:reverse2" pagination-id="fileupass">
+                    <td>{{ev.DateStart | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{ev.Program}}</td>
+                    <td ng-show="ev.Institution != null">{{ev.Institution}} (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-show="ev.Institution == null"></td>
+                    <td>{{ev.Category}} (<span class="ids">{{ev.CategoryID}}</span>)</td>
+                    <td>{{ev.Requests}}</td>
+                    <td ng-show="ev.TotalErrors > 0" class="errors">ERROR ({{ev.TotalErrors}})</td>
+                    <td ng-show="ev.TotalErrors == 0" class="infos">0</td>
+
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <div class="text-center">
+                <dir-pagination-controls pagination-id="fileupass" boundary-links="true" on-page-change="pageChangeHandler2(newPageNumber2)" template-url="Html/dirPagination.tpl.html"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <table class="table table-striped table-responsive">
+            <caption class="caption">Current File Stream</caption>
+            <thead>
+                <tr>
+                    <th>
+                        <a href="" ng-click="sortField3='DateStart';reverse3=!reverse3">Datetime Started</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='Program';reverse3=!reverse3">Program</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='Institution';reverse3=!reverse3">Institution (ID)</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='Category';reverse3=!reverse3">Category</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='Event';reverse3=!reverse3">Event</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='Uri';reverse3=!reverse3">URI</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='Requests';reverse3=!reverse3">Requests</a>
+                    </th>
+                    <th>
+                        <a href="" ng-click="sortField3='TotalErrors';reverse3=!reverse3">Status</a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--<tr ng-repeat="ev in file_stream | orderBy:sortField3:reverse3">-->
+                <tr dir-paginate="ev in file_stream | itemsPerPage: 5 | orderBy:sortField3:reverse3" pagination-id="filestream">
+                    <td>{{ev.DateStart | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+                    <td>{{ev.Program}}</td>
+                    <td ng-show="ev.Institution != null">{{ev.Institution}} (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-show="ev.Institution == null"></td>
+                    <td>{{ev.Category}} (<span class="ids">{{ev.CategoryID}}</span>)</td>
+                    <td>{{ev.Event}} (<span class="ids">{{ev.EventID}}</span>)</td>
+                    <td><a href="#/filedetail" ng-click="getFileDetail(ev.InstitutionID, ev.Uri)">{{ev.Uri}}</a></td>
+                    <td>{{ev.Requests}}</td>
+                    <td ng-show="ev.TotalErrors > 0" class="errors">ERROR ({{ev.TotalErrors}})</td>
+                    <td ng-show="ev.TotalErrors == 0" class="infos">Completed</td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <div class="text-center">
+                <dir-pagination-controls pagination-id="filestream" boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="Html/dirPagination.tpl.html"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+
+
+</div>
