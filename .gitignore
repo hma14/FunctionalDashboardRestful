@@ -214,4 +214,10 @@ ModelManifest.xml
 FunctionalDashboardRestful/Web.confg
 FunctionalDashboardRestful/Web.*.confg
 FunctionalDashboardRestful/Scripts/*.js
+FunctionalDashboardRestful/fonts/
+FunctionalDashboardRestful/App_Start/
+FunctionalDashboardRestful/Properties/
+
+
+
 
