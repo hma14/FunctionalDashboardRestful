@@ -60,8 +60,18 @@ function ($scope, $rootScope, $exceptionHandler, Events) {
             if (keepGoing) {
                 if (value.ID == id) {
                     $rootScope.Program = value.Program;
-                    //$rootScope.xmldata = x2js.xml_str2json(value.XmlData).rawData;
-                    $rootScope.xmldata = xmlParser.xml_str2json(value.XmlData).rawData;
+                    try
+                    {
+                        var x2js = new X2JS();
+                        $rootScope.xmldata = x2js.xml_str2json(value.XmlData).rawData;
+                    }
+                    catch (error)
+                    {
+                        if (error != null) {
+                            $exceptionHandler(error, error.status + ', ' + error.statusText);
+                        }
+                        
+                    }
                     keepGoing = false;
                 }
             }

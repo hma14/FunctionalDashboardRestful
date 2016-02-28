@@ -27,10 +27,10 @@ functionalDashboardApp.controller('filesController',
 
 
             $scope.init = function () {
-                if (file_ppass_list.length > 0) {
-                    $scope.file_ppass = file_ppass_list;
-                    return;
-                }
+                //if (file_ppass_list.length > 0) {
+                //    $scope.file_ppass = file_ppass_list;
+                //    return;
+                //}
                 var promise = Events.queryOnFilesOrWs({ start: $scope.startDate, end: $scope.endDate, sequence: 1 });
                 promise.$promise.then(function (payload) {
                     $scope.file_ppass = payload;
@@ -122,13 +122,22 @@ functionalDashboardApp.controller('filesController',
             };
 
             $scope.getXmlData = function (id) {
-                $rootScope.xmlData = {};
+                $rootScope.xmldata = {};
                 var keepGoing = true;
 
                 angular.forEach($rootScope.fileDetail, function (value, key) {
                     if (keepGoing) {
                         if (value.ID == id) {
-                            $rootScope.xmlData = x2js.xml_str2json(value.XmlData).rawData;
+                            try {
+                                var x2js = new X2JS();
+                                $rootScope.xmldata = x2js.xml_str2json(value.XmlData).rawData;
+                            }
+                            catch (error) {
+                                if (error != null) {
+                                    $exceptionHandler(error, error.status + ', ' + error.statusText);
+                                }
+
+                            }
                             keepGoing = false;
                         }
                     };
