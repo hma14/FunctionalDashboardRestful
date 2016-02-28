@@ -198,12 +198,12 @@
                         {{ev.Event}} (<span class="ids">{{ev.EventID}}</span>)<a href="" class="plusSign" ng-click="toggle = !toggle" ng-show="!toggle"> [+]</a><a href="" class="plusSign" ng-click="toggle = !toggle" ng-show="toggle"> [-]</a>
                         <ul ng-show="toggle" ng-repeat="e in ev.Events">
                             <li>
-                                <a ng-show="e.Level == 'Error'" class="errorLink" href="#/xmldetail" ng-click="getEvent(ev.ID)">{{e.Event}}</a>
-                                <a ng-show="e.Level == 'Information' && e.Event" href="#/xmldetail" ng-click="getEvent(ev.ID)">{{e.Event}}</a>
+                                <a ng-show="e.Level == 'Error'" class="errorLink" href="xmldetail" ng-click="getEvent(ev.ID)">{{e.Event}}</a>
+                                <a ng-show="e.Level == 'Information' && e.Event" href="xmldetail" ng-click="getEvent(ev.ID)">{{e.Event}}</a>
                             </li>
                         </ul>
                     </td>
-                    <td><a href="#/userdetail" ng-click="getUserDetail(ev.InstitutionID, ev.GUID)">{{ev.GUID}}</a></td>
+                    <td><a href="userdetail" ng-click="getUserDetail(ev.InstitutionID, ev.GUID)">{{ev.GUID}}</a></td>
                     <td ng-show="ev.TotalErrors > 0" class="errors">{{ev.TotalErrors}}</td>
                     <td ng-show="ev.TotalErrors == 0" class="infos">{{ev.TotalErrors}}</td>
                 </tr>

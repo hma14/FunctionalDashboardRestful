@@ -182,7 +182,7 @@
                     <td ng-show="ev.Institution == null"></td>
                     <td>{{ev.Category}} (<span class="ids">{{ev.CategoryID}}</span>)</td>
                     <td>{{ev.Event}} (<span class="ids">{{ev.EventID}}</span>)</td>
-                    <td><a href="#/filedetail" ng-click="getFileDetail(ev.InstitutionID, ev.Uri)">{{ev.Uri}}</a></td>
+                    <td><a href="filedetail" ng-click="getFileDetail(ev.InstitutionID, ev.Uri)">{{ev.Uri}}</a></td>
                     <td>{{ev.Requests}}</td>
                     <td ng-show="ev.TotalErrors > 0" class="errors">ERROR ({{ev.TotalErrors}})</td>
                     <td ng-show="ev.TotalErrors == 0" class="infos">Completed</td>

@@ -90,7 +90,7 @@
                     <td>{{ev.Action}}</td>
                     <td>{{ev.ReasonCode}}</td>
                     <td>{{ev.CardSerialNumber}}</td>
-                    <td><a href="#/xmldata" ng-click="getXmlData(ev.ID)">View</a></td>
+                    <td><a href="xmldata" ng-click="getXmlData(ev.ID)">View</a></td>
                     <td ng-show="ev.Errors > 0" class ="errors">ERROR ({{ev.Errors}})</td>
                     <td ng-show="ev.Errors == 0" class="infos">Completed</td>
                 </tr>

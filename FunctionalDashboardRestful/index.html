@@ -10,16 +10,16 @@
     <link href="../Content/themes/jquery-ui.css" rel="stylesheet" />
     <link href="../Content/bootstrap-datepicker3.css" rel="stylesheet" />
     <link href="../Content/Site.css" rel="stylesheet" />
-
+    <base href="/" />
 </head>
 <body>
     <div class="container-fluid" ng-app="functionalDashboardApp">
         <div class="navbar navbar-inverse navbar-fixed-top navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#/">Error Monitor</a></li>
-                <li><a href="#/files">Files</a></li>
-                <li><a href="#/cubicws">CUBIC Web Services</a></li>
-                <li><a href="#/application">Application</a></li>
+                <li><a href="/">Error Monitor</a></li>
+                <li><a href="files">Files</a></li>
+                <li><a href="cubicws">CUBIC Web Services</a></li>
+                <li><a href="application">Application</a></li>
             </ul>
         </div>
         <div class="content">
@@ -48,7 +48,8 @@
     <script src="../Scripts/app/pagination/dirPagination.js"></script> 
     <script src="../Scripts/app/functionalDashboardApp.js"></script>
     <script src="../Scripts/app/datePicker.js"></script>
-    <script src="http://demos.amitavroy.com/learningci/assets/js/xml2json.js" type="text/javascript" charset="UTF-8"></script>   
+    <!--<script src="https://github.com/abdmob/x2js/blob/master/xml2json.min.js" ></script>-->  
+    <script src="../Scripts/x2js/xml2json.js"></script> 
     <script src="../Scripts/app/monitorController.js"></script>
     <script src="../Scripts/app/filesController.js"></script>
     <script src="../Scripts/app/cubicwsController.js"></script>

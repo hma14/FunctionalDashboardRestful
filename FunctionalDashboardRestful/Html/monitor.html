@@ -45,7 +45,7 @@
                 <!--<tr ng-repeat="slt in slttracking | orderBy:sortField4:reverse4">-->
                 <tr dir-paginate="slt in slttracking | itemsPerPage: 5 | orderBy:sortField4:reverse4" pagination-id="slttracking">
                     <td>{{slt.ProgramID}}</td>
-                    <td><a href="#/institutionfiledetail" ng-click="getInstitutionDetail(slt.InstitutionID)">{{slt.Institution}}</a> (<span class="ids">{{slt.InstitutionID}}</span>)</td>
+                    <td><a href="institutionfiledetail" ng-click="getInstitutionDetail(slt.InstitutionID)">{{slt.Institution}}</a> (<span class="ids">{{slt.InstitutionID}}</span>)</td>
                     <td>{{slt.Category}} (<span class="ids">{{slt.CategoryID}}</span>)</td>
                     <td>{{slt.Event}} (<span class="ids">{{slt.EventID}}</span>)</td>
                     <td>{{slt.RuleDescription}}</td>
@@ -93,8 +93,8 @@
                 <tr dir-paginate="ev in events | itemsPerPage: 5 | orderBy:sortField:reverse" pagination-id="overviewerrors">
                     <td>{{ev.OrganizationId}}</td>
                     <td>{{ev.Program}}</td>
-                    <td ng-if="ev.Program == 'PPASS' && ev.Institution != null"><a href="#/institutionfiledetail" ng-click="getInstitutionDetail(ev.InstitutionID)">{{ev.Institution}}</a> (<span class="ids">{{ev.InstitutionID}}</span>)</td>
-                    <td ng-if="ev.Program == 'UPASS' && ev.Institution != null"><a href="#/institutionwsdetail" ng-click="getInstitutionDetail(ev.InstitutionID)">{{ev.Institution}}</a> (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-if="ev.Program == 'PPASS' && ev.Institution != null"><a href="institutionfiledetail" ng-click="getInstitutionDetail(ev.InstitutionID)">{{ev.Institution}}</a> (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-if="ev.Program == 'UPASS' && ev.Institution != null"><a href="institutionwsdetail" ng-click="getInstitutionDetail(ev.InstitutionID)">{{ev.Institution}}</a> (<span class="ids">{{ev.InstitutionID}}</span>)</td>
                     <td ng-show="ev.Institution == null"></td>
                     <td ng-show="ev.FileErrors > 0" class="errors">{{ev.FileErrors}}</td>
                     <td ng-show="ev.FileErrors == 0" class="infos">{{ev.FileErrors}}</td>
@@ -180,7 +180,7 @@
                 <tr ng-show="ev.FileErrors > 0" dir-paginate="ev in events | itemsPerPage: 5 | orderBy:sortField2:reverse2" pagination-id="fileerrors">
                     <td>{{ev.DateStart | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                     <td>{{ev.Program}}</td>
-                    <td ng-if="ev.Program == 'PPASS' && ev.Institution != null"><a href="#/institutionfiledetail" ng-click="getInstitutionDetail(ev.InstitutionID)">{{ev.Institution}}</a> (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-if="ev.Program == 'PPASS' && ev.Institution != null"><a href="institutionfiledetail" ng-click="getInstitutionDetail(ev.InstitutionID)">{{ev.Institution}}</a> (<span class="ids">{{ev.InstitutionID}}</span>)</td>
                     <td ng-show="ev.Institution == null"></td>
                     <td>{{ev.Category}} (<span class="ids">{{ev.CategoryID}}</span>)</td>
                     <td>{{ev.Event}} (<span class="ids">{{ev.EventID}}</span>)</td>
@@ -231,7 +231,7 @@
                 <tr ng-show="ev.WSErrors > 0" dir-paginate="ev in events | itemsPerPage: 5 | orderBy:sortField3:reverse3" pagination-id="wserrors">
                     <td>{{ev.DateStart | date:'yyyy-MM-dd HH:mm:ss'}}</td>
                     <td>{{ev.Program}}</td>
-                    <td ng-if="ev.Program == 'UPASS' && ev.Institution != null"><a href="#/institutionwsdetail" ng-click="getInstitutionDetail(ev.InstitutionID)">{{ev.Institution}}</a> (<span class="ids">{{ev.InstitutionID}}</span>)</td>
+                    <td ng-if="ev.Program == 'UPASS' && ev.Institution != null"><a href="institutionwsdetail" ng-click="getInstitutionDetail(ev.InstitutionID)">{{ev.Institution}}</a> (<span class="ids">{{ev.InstitutionID}}</span>)</td>
                     <td ng-show="ev.Institution == null"></td>
                     <td>{{ev.Category}} (<span class="ids">{{ev.CategoryID}}</span>)</td>
                     <td>{{ev.Event}} (<span class="ids">{{ev.EventID}}</span>)</td>

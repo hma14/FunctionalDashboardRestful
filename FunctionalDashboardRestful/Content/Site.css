@@ -56,6 +56,7 @@ label {
 .date-form {
     margin: 10px;
     font-size: 0.9em;
+    z-index:10;
 }
 
     .date-form input {
@@ -95,7 +96,7 @@ label.control-label span {
     margin-top: 50px;
 }
 
-.navbar {
+div.navbar {
     z-index: 1000;
 }
 

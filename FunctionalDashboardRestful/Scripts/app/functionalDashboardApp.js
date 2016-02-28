@@ -2,7 +2,7 @@
 
 var functionalDashboardApp = angular.module('functionalDashboardApp', ['ngRoute', 'apiServices', 'dirPagination']);
 
-functionalDashboardApp.config(function ($routeProvider) {
+functionalDashboardApp.config(function ($routeProvider, $locationProvider) {
     $routeProvider.
     when('/',
     {
@@ -51,7 +51,8 @@ functionalDashboardApp.config(function ($routeProvider) {
     }).
     otherwise({
         redirectto: '/'
-    });
+    })
+    $locationProvider.html5Mode(true);
 });
 
 

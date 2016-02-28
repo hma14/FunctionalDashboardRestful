@@ -1,7 +1,7 @@
 ﻿'use restrict';
 
 functionalDashboardApp.controller('cubicwsController',
-    ['$scope', '$rootScope', '$exceptionHandler', 'Events',
+    ['$scope', '$rootScope', '$exceptionHandler', 'Events', 
 function ($scope, $rootScope, $exceptionHandler, Events) {
 
     $scope.cubicws_ppass = [];
@@ -60,7 +60,8 @@ function ($scope, $rootScope, $exceptionHandler, Events) {
             if (keepGoing) {
                 if (value.ID == id) {
                     $rootScope.Program = value.Program;
-                    $rootScope.xmldata = x2js.xml_str2json(value.XmlData).rawData;
+                    //$rootScope.xmldata = x2js.xml_str2json(value.XmlData).rawData;
+                    $rootScope.xmldata = xmlParser.xml_str2json(value.XmlData).rawData;
                     keepGoing = false;
                 }
             }
